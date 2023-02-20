@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[246]:
+# In[256]:
 
 
 import os
@@ -10,14 +10,14 @@ import numpy as np
 import pandas as pd
 
 
-# In[247]:
+# In[257]:
 
 
 NF = 50 #number of files
 NP = 57300 #number of particles
 
 
-# In[248]:
+# In[258]:
 
 
 contador1 = list()
@@ -30,7 +30,7 @@ posicaoX = np.zeros((NP,NF))
 posicaoY = np.zeros((NP,NF))
 
 
-# In[249]:
+# In[259]:
 
 
 #construção das repartições no tambor
@@ -45,32 +45,7 @@ esp_x = (max_x - min_x)/nd_x
 esp_y = (max_y - min_y)/nd_y
 
 
-# In[250]:
-
-
-#leitura dos dados
-#j = 1
-#for i in range(0,NF):
-    #Dados = pd.read_csv('rot_{}.csv'.format(i))
-    #Dados_filter = Dados.filter(items=['type','Points:0','Points:1'])
-    #posicaoX[0:i] = Dados_filter['Points:0'].copy()
-    
-    #posicaoX[0:i] = Dados_filter.loc[:,:2].copy()
-
-    #posicaoX.append(posicaoX[i])
-    #posicaoY[i] = Dados.iloc[2].copy()
-    #j = j + 1
-    
-#display(Dados_Filter)
-#display(posicaoX)
-#display(Dados_Filter.iloc[:,[0,1]])
-#display(Dados_Filter.loc['Points:0'])
-#display(Dados_Filter.iloc[:,2:3])
-#Dados_filter.shape
-#display(Dados_Filter.iloc[1])
-
-
-# In[251]:
+# In[260]:
 
 
 #leitura dos dados
@@ -83,7 +58,7 @@ Dados_filter = Dados.filter(items=['type','Points:0','Points:1'])
 display(Dados_filter)
 
 
-# In[252]:
+# In[261]:
 
 
 #construção do ponteiro para localização
@@ -95,7 +70,7 @@ cd1 = cd1.assign(posicao = posicao.values)
 print(cd1)
 
 
-# In[253]:
+# In[262]:
 
 
 #contagem de particulas repetidas em cada posição
@@ -126,7 +101,7 @@ count4 = pd.concat([dftype2, count4], axis=0).sort_values(by='posicao', axis=0,a
 #display(dftypetotal)
 
 
-# In[254]:
+# In[263]:
 
 
 #cálculo da concentração por tipo de partícula
@@ -138,29 +113,6 @@ total_count_df['concentracao_1']= total_count_df['count_x'] / total_count_df['to
 total_count_df['concentracao_2']= total_count_df['count_y'] / total_count_df['total_count']
 total_count_df = total_count_df.replace(np.nan,0)
 display(total_count_df)
-
-
-# In[255]:
-
-
-#cálculo da concentração
-
-#if dftype1.shape[0] >= dftype2.shape[0]:
-    #for i in range(0,dftype1.shape[0]):
-        #for j in range(0,dftype2.shape[0]):
-            #if dftype1.iloc[i]['posicao'] == dftype2.iloc[j]['posicao']:
-                #concentracao_1 = dftype1.iloc[i]['count']/(dftype1.iloc[i]['count'] + dftype2.iloc[j]['count'])
-                #concentracao1.insert(i, concentracao_1)
-                
-#else:
-    #for i in range(0,dftype2.shape[0]):
-       # for j in range(0,dftype1.shape[0]):
-            #if dftype2.iloc[i]['posicao'] == dftype1.iloc[j]['posicao']:
-                #concentracao_2 = dftype2.iloc[i]['count']/(dftype1.iloc[i]['count'] + dftype2.iloc[j]['count'])
-                #concentracao2.insert(i, concentracao_2)
-                
-#print(dftype1.shape[0])
-#print(dftype2.shape[0])
 
 
 # In[ ]:
